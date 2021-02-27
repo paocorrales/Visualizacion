@@ -191,6 +191,6 @@ en nuestro análisis.
 -----
 
 **Fuente:** Estos apuntes forman parte del curso R para clima
-[https://eliocamp.github.io/r-clima/](eliocamp.github.io/r-clima/) de
+[eliocamp.github.io/r-clima/](https://eliocamp.github.io/r-clima/) de
 Elio Campitelli y Paola Corrales con licencia Creative Commons
 Attribution-ShareAlike 4.0.

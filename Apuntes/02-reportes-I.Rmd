@@ -1,7 +1,6 @@
 ---
 title: "Introducción a {RMarkdown}"
-output:
-  github_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -225,4 +224,4 @@ Para mencionarla en el texto entonces tenemos que poner el nombre de esa variabl
 
 
 
-**Fuente:** Estos apuntes forman parte del curso R para clima [https://eliocamp.github.io/r-clima/](eliocamp.github.io/r-clima/) de Elio Campitelli y Paola Corrales con licencia Creative Commons Attribution-ShareAlike 4.0.
+**Fuente:** Estos apuntes forman parte del curso R para clima [eliocamp.github.io/r-clima/](https://eliocamp.github.io/r-clima/) de Elio Campitelli y Paola Corrales con licencia Creative Commons Attribution-ShareAlike 4.0.
