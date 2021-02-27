@@ -2,7 +2,8 @@
 
 ### Clase 1
 
-* Presentación de la materia
+* [Presentación de la materia](https://docs.google.com/presentation/d/1dkyN23WAnJydQEkUg-mw0bkZ44w6t7oy2ctYz5UpWcs/edit?usp=sharing)
+* [Visualizaciones](https://docs.google.com/presentation/d/17TlQuoO2flvz48AFA8zXIX3vcyk_vlDXYIBbqktqRZU/edit?usp=sharing)
     - Para que visualizar: exploración vs comunicación
     - Tablas y gráficos
     - Elementos de un gráfico
@@ -10,8 +11,8 @@
 * **Ejercicio:** ¿Qué gráfico corresponde?
 * **Ejercicio:** ¿Este es un buen gráfico?
 * Cómo vamos a trabajar: 
-    - Proyectos 
-    - RMarkdown 
+    - [Proyectos](https://github.com/paocorrales/Visualizacion/blob/main/Apuntes/01-proyectos.md) 
+    - [RMarkdown](https://github.com/paocorrales/Visualizacion/blob/main/Apuntes/02-reportes-I.md)
 
 
 ### Clase 2
