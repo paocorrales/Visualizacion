@@ -8,8 +8,6 @@
     - Tablas y gráficos
     - Elementos de un gráfico
     - Tipos de variables y gráficos (https://www.data-to-viz.com/)
-* **Ejercicio:** ¿Qué gráfico corresponde?
-* **Ejercicio:** ¿Este es un buen gráfico?
 * Cómo vamos a trabajar: 
     - [Proyectos](https://github.com/paocorrales/Visualizacion/blob/main/Apuntes/01-proyectos.md) 
     - [RMarkdown](https://github.com/paocorrales/Visualizacion/blob/main/Apuntes/02-reportes-I.md)
@@ -19,12 +17,23 @@
 
 * Grammar of graphics + repaso de {ggplot2}
 * Graficos para explorar
-* **Ejercicio:** Hacé el gráfico más feo.
+    - Visualizar cantidades
+    - Visualizar distribuciones
+    - Visualizar relaciones
+    - Visualizar series
+* Overplotting
+* Paneles
+
 
 ### Clase 3
 
 * Gráficos para comunicar 
-* Escalas, uso de color ({colorblindr})
+* Escalas
+* Uso de color 
+* Elementos de texto
+* Temas y diseño de gráficos
+* Gráficos html
+
 * Material: https://stephanieevergreen.com/data-visualization-checklist/
 
 ### Clase 4
