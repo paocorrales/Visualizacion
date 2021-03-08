@@ -1,0 +1,165 @@
+---
+title: "Clase 2"
+author: "Pao"
+date: "3/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+```
+
+## Visualizar relaciones
+
+```{r}
+pinguinos <- datos::pinguinos
+```
+
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point()
+```
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie))
+```
+
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) +
+  geom_smooth(method = "lm", aes(color = especie))
+```
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie, size = masa_corporal_g))
+```
+
+## Paneles
+
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie, size = masa_corporal_g)) +
+  facet_wrap(~especie)
+```
+
+```{r}
+pinguinos %>% 
+  filter(!is.na(sexo)) %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie, size = masa_corporal_g)) +
+  facet_grid(sexo~especie)
+```
+
+## Overplotting
+
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie), 
+             size = 0.5)
+```
+
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie), 
+             alpha = 0.5)
+```
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie), 
+             shape = 1)
+```
+
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_jitter(aes(color = especie), size = 0.8,
+              height = 1)
+```
+
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_jitter(aes(color = especie), size = 0.8,
+              height = 50)
+```
+
+
+
+
+## Visualizar series
+
+```{r}
+gei <- read_delim(here("datos", "emisiones-gei-por-sector_dncc.csv"),
+                  delim = ";") 
+
+colnames(gei) <- c("anio", "sector", "emisiones", "unidad_medida")
+
+gei <- gei %>% 
+  mutate(unidad_medida = str_remove(unidad_medida, ",,"),
+         sector = if_else(sector == "energia", "Energía", sector))
+
+write_csv(gei, here("datos", "emisiones_gei.csv"))
+```
+```{r}
+gei %>% 
+  filter(sector == "Energía") %>% 
+  ggplot(aes(anio, emisiones)) +
+  geom_point() 
+```
+
+```{r}
+gei %>% 
+  filter(sector == "Energía") %>% 
+  ggplot(aes(anio, emisiones)) +
+  geom_line()
+```
+```{r}
+gei %>% 
+  filter(sector == "Energía") %>% 
+  ggplot(aes(anio, emisiones)) +
+  geom_point() +
+  geom_line()
+```
+
+```{r}
+gei %>% 
+  filter(anio %in% c(2002, 2003, 2005, 2007)) %>% 
+  filter(sector == "Energía") %>% 
+  ggplot(aes(anio, emisiones)) +
+  geom_point() +
+  geom_line()
+```
+
+```{r}
+gei %>% 
+  ggplot(aes(anio, emisiones)) +
+  geom_point(aes(color = sector, shape = sector),
+             size = 2) +
+  geom_line(aes(color = sector)) +
+  # scale_color_brewer(palette = "Dark2") +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  guides(color = guide_legend(nrow = 2)) +
+  labs(x = "Año", y = latex2exp::TeX("Emision (Mt CO_2eq)"),
+       color = NULL, shape = NULL) +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "bottom")
+```
+
