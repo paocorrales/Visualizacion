@@ -40,7 +40,7 @@ ggplot(gapminder,
 boxoffice <- tibble(
   rank = 1:5,
   title = c("Star Wars", "Jumanji", "Pitch Perfect 3", "Greatest Showman", "Ferdinand"),
-  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD
+  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # millones de USD
 )
 
 ```
@@ -49,8 +49,6 @@ boxoffice <- tibble(
 
 ggplot(boxoffice, aes(title, amount)) +
   geom_col()  # "col" es por columnas
-
-
 
 ```
 
