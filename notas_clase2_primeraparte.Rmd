@@ -1,0 +1,63 @@
+---
+title: "Graficos Clase 2"
+author: "Yanina"
+date: "11/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+```
+
+## Visualizar cantidades
+
+```{r}
+# Datos de Box Office Mojo para Dic. 22-24, 2017
+boxoffice <- tibble(
+  rank = 1:5,
+  title = c("Star Wars", "Jumanji", "Pitch Perfect 3", "Greatest Showman", "Ferdinand"),
+  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD
+)
+
+```
+
+```{r grafico_barras_col}
+
+ggplot(boxoffice, aes(title, amount)) +
+  geom_col()  # "col" es por columnas
+
+
+
+```
+
+```{r}
+pinguinos <- datos::pinguinos
+head(pinguinos)
+```
+
+Objetivo: visualizar el número de pinguinos por especie
+
+```{r grafico_barras_bar}
+
+ggplot(pinguinos, aes(y = especie)) + # Atención: no se define x 
+  geom_bar()
+
+
+
+```
+```{r histograma}
+
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_histogram()
+
+```
+
+```{r histograma_intervalo}
+
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_histogram(binwidth = 50)
+
+```
+
