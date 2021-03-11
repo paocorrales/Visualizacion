@@ -11,6 +11,28 @@ library(tidyverse)
 library(here)
 ```
 
+## Elementos gramaticales esenciales
+
+
+```{r}
+ggplot(data = gapminder, 
+       mapping = aes(x = gdpPercap, 
+            y = lifeExp, 
+           color = continent, 
+           size = pop)) +
+  geom_point()
+```
+
+
+```{r}
+
+library(gapminder)
+ggplot(gapminder, 
+        aes(gdpPercap, 
+            lifeExp)) + geom_point()
+
+```
+
 ## Visualizar cantidades
 
 ```{r}
@@ -67,8 +89,15 @@ ggplot(pinguinos, aes(masa_corporal_g)) +
 
 ```
 
-```{r boxplot}
+```{r boxplot_x_especie}
 ggplot(pinguinos, aes(x= especie, y= masa_corporal_g)) +
   geom_boxplot()
+```
+
+
+```{r densidad}
+
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_density(fill = "skyblue")
 
 ```
