@@ -67,3 +67,8 @@ ggplot(pinguinos, aes(masa_corporal_g)) +
 
 ```
 
+```{r boxplot}
+ggplot(pinguinos, aes(x= especie, y= masa_corporal_g)) +
+  geom_boxplot()
+
+```
