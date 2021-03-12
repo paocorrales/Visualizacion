@@ -51,6 +51,23 @@ ggplot(boxoffice, aes(title, amount)) +
   geom_col()  # "col" es por columnas
 
 ```
+```{r grafico_barras_col_ejes_cambiados}
+
+ggplot(boxoffice, aes(amount, title)) +
+  geom_col()  # "col" es por columnas
+
+```
+
+```{r grafico_barras_col_ejes_cambiados_reordenado}
+
+ggplot(boxoffice, aes(fct_reorder(title, amount), amount)) +
+  geom_col()
+
+ggplot(boxoffice, aes(amount,fct_reorder(title, amount))) +
+  geom_col()
+
+
+```
 
 ```{r}
 pinguinos <- datos::pinguinos
@@ -62,6 +79,9 @@ Objetivo: visualizar el número de pinguinos por especie
 ```{r grafico_barras_bar}
 
 ggplot(pinguinos, aes(y = especie)) + # Atención: no se define x 
+  geom_bar()
+
+ggplot(pinguinos, aes(sexo, fill = especie)) +
   geom_bar()
 
 
