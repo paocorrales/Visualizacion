@@ -107,16 +107,18 @@ pinguinos %>%
 ## Visualizar series
 
 ```{r}
-gei <- read_delim(here("datos", "emisiones-gei-por-sector_dncc.csv"),
-                  delim = ";") 
+# gei <- read_delim(here("datos", "emisiones-gei-por-sector_dncc.csv"),
+#                   delim = ";") 
+# 
+# colnames(gei) <- c("anio", "sector", "emisiones", "unidad_medida")
+# 
+# gei <- gei %>% 
+#   mutate(unidad_medida = str_remove(unidad_medida, ",,"),
+#          sector = if_else(sector == "energia", "Energía", sector))
+# 
+# write_csv(gei, here("datos", "emisiones_gei.csv"))
 
-colnames(gei) <- c("anio", "sector", "emisiones", "unidad_medida")
-
-gei <- gei %>% 
-  mutate(unidad_medida = str_remove(unidad_medida, ",,"),
-         sector = if_else(sector == "energia", "Energía", sector))
-
-write_csv(gei, here("datos", "emisiones_gei.csv"))
+gei <- read_csv(here("datos", "emisiones_gei.csv"))
 ```
 ```{r}
 gei %>% 
@@ -146,6 +148,19 @@ gei %>%
   ggplot(aes(anio, emisiones)) +
   geom_point() +
   geom_line()
+```
+
+```{r}
+gei %>% 
+  ggplot(aes(anio, emisiones)) +
+  geom_point(aes(color = sector, shape = sector)) +
+  geom_line(aes(color = sector))
+```
+```{r eval=FALSE}
+______ %>% 
+  ggplot(aes(anio, emisiones)) +
+  geom_point(aes(color = ______, _______ = sector)) +
+  geom_line(__________________)
 ```
 
 ```{r}
