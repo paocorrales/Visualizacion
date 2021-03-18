@@ -1,0 +1,106 @@
+---
+title: "Clase 3  - Otros elementos de gráficos"
+author: "Yanina"
+date: "18/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+pinguinos <- datos::pinguinos
+```
+
+## Títulos y ejes
+
+```{r grafico_barras_bar}
+
+ggplot(pinguinos, aes(sexo, fill = especie)) +
+  geom_bar()
+
+# Agregamos titulos
+
+ggplot(pinguinos, aes(sexo, fill = especie)) +
+  geom_bar() + 
+  labs(
+    x = "Sexo", 
+    y = "Cantidad", 
+    fill = "Especie",
+    title = "Cantidad de pingüinos por especie",
+    subtitle = "Fuente: paquete datos, dataset pingüinos"
+  )
+
+```
+
+```{r grafico_de_puntos}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie))
+
+#Agregamos títulos
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) + 
+  labs(
+    x = "Largo del pico (mm)", 
+    y = "Largo de la aleta (mm)", 
+    colour = "Especie",
+    title = "Relación entre el tamaño de pico y de la aleta de los pingüinos",
+    subtitle = "Fuente: paquete datos, dataset pingüinos"
+  )
+
+```
+
+```{r box_office}
+# Datos de Box Office Mojo para Dic. 22-24, 2017
+boxoffice <- tibble(
+  rank = 1:5,
+  title = c("Star Wars", "Jumanji", "Pitch Perfect 3", "Greatest Showman", "Ferdinand"),
+  amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # millones de USD
+)
+
+```
+
+```{r grafico_barras_col_ejes_cambiados_agregar_etiqueta_datos}
+
+ggplot(boxoffice, aes(amount, title)) +
+  geom_col() +
+  geom_text(aes(label = amount))# "col" es por columnas
+
+```
+
+```{r}
+#Agregamos títulos
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) + 
+  labs(
+    x = "Largo del pico (mm)", 
+    y = "Largo de la aleta (mm)", 
+    colour = "Especie",
+    title = "Relación entre el tamaño de pico y de la aleta de los pingüinos",
+    subtitle = "Fuente: paquete datos, dataset pingüinos"
+  )+
+  geom_text(aes(label = masa_corporal_g))
+
+mas_pesado <- pinguinos %>%
+  filter(masa_corporal_g == max(masa_corporal_g, na.rm = TRUE))
+
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) + 
+  labs(
+    x = "Largo del pico (mm)", 
+    y = "Largo de la aleta (mm)", 
+    colour = "Especie",
+    title = "Relación entre el tamaño de pico y de la aleta de los pingüinos",
+    subtitle = "Fuente: paquete datos, dataset pingüinos"
+  )+
+  geom_text(aes(label = masa_corporal_g),
+            data = mas_pesado,
+            size = 3)
+
+
+```
+
