@@ -1,6 +1,6 @@
 ---
 title: "Visualización de datos con {ggplot2} I"
-output: github_document    
+output: html_document    
 ---
 
 ```{r setup, include=FALSE}
