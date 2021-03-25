@@ -1,0 +1,33 @@
+---
+title: "Estilo"
+author: "Yanina"
+date: "22/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Agregamos títulos
+pinguinos %>% ggplot(aes(largo_pico_mm, largo_aleta_mm)) + geom_point(aes(color = especie)) +labs(x = "Largo del pico (mm)",y = "Largo de la aleta (mm)",colour = "Especie", title = "Relación entre el tamaño de pico y de la aleta de los pingüinos",subtitle = "Fuente: paquete datos, dataset pingüinos")+ geom_text(aes(label = masa_corporal_g))
+
+```
+
+```{r}
+#Agregamos títulos
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) + 
+  labs(
+    x = "Largo del pico (mm)", 
+    y = "Largo de la aleta (mm)", 
+    colour = "Especie",
+    title = "Relación entre el tamaño de pico y de la aleta de los pingüinos",
+    subtitle = "Fuente: paquete datos, dataset pingüinos"
+  )+
+  geom_text(aes(label = masa_corporal_g))
+
+```
+
