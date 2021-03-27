@@ -28,17 +28,15 @@
 ### Clase 3
 
 * Gráficos para comunicar 
-* Escalas
-* Uso de color 
 * Elementos de texto
 * Temas y diseño de gráficos
-* Gráficos html
 
 * Material: https://stephanieevergreen.com/data-visualization-checklist/
 
-### Clase 4
+### Clase 4 (asincrónica)
 
-* Tablas (https://paocorrales.github.io/deExcelaR/11-tablas.html)
+* ggplo2 y mapas
+
 
 ### Clase 5
 
