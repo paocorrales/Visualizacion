@@ -6,9 +6,7 @@ Podrán realizar el trabajo final de manera individual o en grupos de hasta 2 pe
 El trabajo deberá incluir su análisis y conclusiones.
 Deberán compartir un link a una versión pública e incluir el código utilizado (en caso de corresponder). 
 
-**Fecha de publicación:**
-
-**Fecha de presentación en clase:** ??
+**Fecha de presentación en clase:** 6 de mayo
 
 ## Bases de datos disponibles
 
