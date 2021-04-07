@@ -38,7 +38,7 @@
 * ggplo2 y mapas
 
 
-### Clase 5
+### Clase 5 (asincrónica)
 
 * Introducción a Tableau
 * Graficos
@@ -46,13 +46,22 @@
 
 ### Clase 6
 
-* RMarkdown I
-* Infome analizando una base de datos (dentro de una serie de opciones)
+* Discusión de trabajo final
+* Repaso de lo visto hasta ahora
 
 ### Clase 7
 
-* RMarkdown II
+* Tiempo para trabajar sobre el trabajo final 
+* Repaso sobre RMarkdown / RMarkdown avanzado
+
+### Clase 8 (asincrónica)
+
 * Publicar el informe: https://eliocamp.github.io/r-clima/12-publicar.html
+    * Netlify
+    * Shinny 
+
+### Clase 9
+
 * Presentación de informes
 
 
