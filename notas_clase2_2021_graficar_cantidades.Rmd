@@ -77,3 +77,24 @@ ggplot(pinguinos) +
 ggplot(pinguinos) +
   geom_bar(aes(x = especie, fill = isla), position = "dodge")
 ```
+# Dar vuelta los ejes
+
+```{r grafico_barras_bar}
+
+ggplot(pinguinos) +
+  geom_bar(aes(x = especie, fill = isla))+
+  coord_flip()
+
+```
+### Box Plot
+
+```{r boxplot}
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_boxplot()
+
+```
+
+```{r boxplot_x_especie}
+ggplot(pinguinos, aes(x= especie, y= masa_corporal_g)) +
+  geom_boxplot()
+```
