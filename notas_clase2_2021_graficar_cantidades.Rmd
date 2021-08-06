@@ -41,7 +41,6 @@ Fijate que la variable _prop_ no es una columna de _pinguinos_ sino que es el no
 
 Ahora podríamos decir que el 20% de los pinguinos en la base de datos corresponde a la especie _Barbijo_. Además de la función `stat()` agregamos `group = 1` y esto no fue sin querer.  Al incluir `group = 1`, {ggplot2} junta todas las observaciones en un único grupo (con el valor 1) y calcula la proporción o el porcentaje que representa cada espcie respecto del total de pinguinos. Si no incluimos eso, {ggplot2} asumirá que cada especie es un grupo independiente y el cálculo del porcentaje también lo hará por separado.
 
-
 ### Posición
 
 Ya vimos que la estética del `color` sólo modifica el _borde de las barras_, si quisieras modificar _el relleno_ necesitamos cambiar el `fill` y al igual que antes podemos mapear una variable a esta estética.
@@ -51,3 +50,30 @@ ggplot(data = pinguinos) +
   geom_bar(aes(x = especie, fill = isla))
 ```
 
+Al mapear una variable distinta, la _isla_ donde se encuentran los pinguinos, podemos visualizar información extra. Este “apilamiento” de las barras es la opción de posición por defecto `position = "stack"`, pero podrías usar una de las otras tres opciones: `"identity"`, `"dodge"` o `"fill"`.
+
+
+  * position = "identity" colocará cada barra comenzando en cero quedando todas superpuestas. Para ver esa superposición, debemos hacer que las barras sean ligeramente transparentes configurando el alpha a un valor pequeño.
+
+```{r}
+
+ggplot(pinguinos) +
+  geom_bar(aes(x = especie, fill = isla), position = "identity")
+
+ggplot(pinguinos) +
+  geom_bar(aes(x = especie, fill = isla), alpha = 0.2, position = "identity")
+```
+
+* `position = "fill"` apila las barras al igual que position = "stack", pero transforma los datos para que cada conjunto de barras apiladas tenga la misma altura. Esto hace que sea más fácil comparar proporciones entre grupos.
+
+```{r}
+ggplot(pinguinos) +
+  geom_bar(aes(x = especie, fill = isla), position = "fill")
+```
+
+  * `position = "dodge"` coloca las barras una al lado de la otra. Esto hace que sea más fácil comparar valores individuales.
+
+```{r}
+ggplot(pinguinos) +
+  geom_bar(aes(x = especie, fill = isla), position = "dodge")
+```
