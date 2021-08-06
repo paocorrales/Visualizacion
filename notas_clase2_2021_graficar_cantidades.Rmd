@@ -1,0 +1,53 @@
+---
+title: "notas_clase2_2021_graficarcantidades"
+author: "Yanina"
+date: "6/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+pinguinos <- datos::pinguinos
+```
+
+## Visualizar cantidades
+
+Vamos a trabajar con el dataset de pinguinos
+
+```{r}
+head(pinguinos)
+```
+
+### Gráficos de frecuencias
+
+Este es un gráfico de barras construido usando la función `geom_bar()`. En el eje x muestra la especie de los pinguinos y en el eje y la cantidad (_count_ en inglés) de pinguinos en cada especie. Pero pinguinos no tiene una variable que se llame count y tampoco la generamos nosotros. ¡Es calculada internamente por _{ggplot2}_!
+
+```{r}
+ggplot(data = pinguinos, aes(x = especie)) +
+  geom_bar()
+
+```
+Además de contar la cantidad de elementos, _{ggplot2}_ puede calcular muchas otras transformaciones sobre los datos. Por ejemplo si quisiéramos _el porcentaje o la proporción_ que le corresponde a cada especie respecto del total podemos hacerlo mapeando esa transformación _prop_ al eje y con la función `stat()`.
+
+```{r}
+ggplot(data = pinguinos, aes(x = especie)) +
+  geom_bar(aes(y = stat(prop), group = 1))
+
+```
+
+Fijate que la variable _prop_ no es una columna de _pinguinos_ sino que es el nombre de una variable calculada por _geom_bar()_, por eso hay que rodearla de la función `stat()`. El nombre de las variables calculadas por cada geoms está en su documentación (abajo de todo, antes de los ejemplos).
+
+Ahora podríamos decir que el 20% de los pinguinos en la base de datos corresponde a la especie _Barbijo_. Además de la función `stat()` agregamos `group = 1` y esto no fue sin querer.  Al incluir `group = 1`, {ggplot2} junta todas las observaciones en un único grupo (con el valor 1) y calcula la proporción o el porcentaje que representa cada espcie respecto del total de pinguinos. Si no incluimos eso, {ggplot2} asumirá que cada especie es un grupo independiente y el cálculo del porcentaje también lo hará por separado.
+
+
+### Posición
+
+Ya vimos que la estética del `color` sólo modifica el _borde de las barras_, si quisieras modificar _el relleno_ necesitamos cambiar el `fill` y al igual que antes podemos mapear una variable a esta estética.
+
+```{r}
+ggplot(data = pinguinos) +
+  geom_bar(aes(x = especie, fill = isla))
+```
+
