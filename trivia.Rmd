@@ -19,17 +19,14 @@ Todos los gráficos utilizan bases de datos de la librería {datos}.
 
 A- 
 ggplot(data = paises, mapping = aes(x = pib_per_capita, y = esperanza_de_vida))
-*No recuerda que necesita incluir una capa con la geometría*
 
-B- 
+B- *Correcta*
 ggplot(data = paises, mapping = aes(x = pib_per_capita, y = esperanza_de_vida)) +
   geom_point()
-*Correcta*
 
 C-
 ggplot(data = paises, mapping = aes(x = poblacion, y = esperanza_de_vida)) +
   geom_point()
-*Encamidanda pero no revisó las variables graficadas*
 
 ```{r}
 ggplot(data = paises, mapping = aes(x = pib_per_capita, y = esperanza_de_vida)) +
@@ -43,35 +40,56 @@ ggplot(paises, aes(x = paises$pib_per_capita, y = paises$esperanza_de_vida)) +
   geom_point()
 
 A- No corre, las variables en x e y no son llamadas correctamente
-*Identifica que las variables no son llamadas correctamente pero piensa que no corre*
+
 B- Corre, no tiene ningún problema!
-*Tenemos un problema*
-C- Si corre pero las variables en x e y no son llamadas correctamente
-*Correcta*
+
+C- Si corre pero las variables en x e y no son llamadas correctamente *Correcta*
+
+```{r}
+ggplot(paises, aes(x = paises$pib_per_capita, y = paises$esperanza_de_vida)) +
+  geom_point()
+```
+
+Un ejemplo de por que NO llamar a las variables como paises$esperanza_de_vida
+```{r}
+paises1 <- paises %>% 
+  mutate(esperanza_de_vida = esperanza_de_vida*1000)
+
+ggplot(paises, aes(x = paises$pib_per_capita, y = paises1$esperanza_de_vida)) +
+  geom_point()
+```
+
 
 ## ¿Qué característica estética usarías para generar el gráfico?
 
-A- color
-*Correcta*
+A- color *Correcta*
+
 B- fill
-*Podría ser, pero por default no*
+
 C- point
-*Confunde estética con geometría*
+
 
 ```{r}
 ggplot(data = paises, mapping = aes(x = pib_per_capita, y = esperanza_de_vida)) +
   geom_point(aes(color = continente))
 ```
 
+Pero cuando se usa una shape con rellene, vale usar fill.
+
+```{r}
+ggplot(data = paises, mapping = aes(x = pib_per_capita, y = esperanza_de_vida)) +
+  geom_point(aes(fill = continente), shape = 21)
+```
+
 ## ¿Qué problema tiene este gráfico?
 
 A- Ninguno, me gusta el color rojo
 B- Le sobra la legenda pero no se porqué
-C- El color va afuera del aes()
+C- El color va afuera del aes() *Correcta*
 
 ```{r}
 ggplot(data = paises, mapping = aes(x = pib_per_capita, y = esperanza_de_vida)) +
-  geom_point(aes(color = "red"))
+    geom_point(aes(color = "blue"))
 ```
 
 ## ¿Cómo completarías el siguiente código? 
@@ -79,11 +97,10 @@ ggplot(data = paises, mapping = aes(x = pib_per_capita, y = esperanza_de_vida)) 
 ggplot(paises, aes(x = pib_per_capita, y = esperanza_de_vida)) +
   geom_point(aes(____ = continente, ____ = poblacion))
   
-A- color = continente, size = poblacion
+A- color = continente, size = poblacion *Correcta*
 B- size = continente, color = poblacion
 C- color = continente, shape = poblacion
 
-*Esta no tiene tanto poder descriptivo, pero si juegan en R con las opciones ya ganan experiencia*
 
 ```{r}
 ggplot(data = paises, mapping = aes(x = pib_per_capita, y = esperanza_de_vida)) +
@@ -93,16 +110,27 @@ ggplot(data = paises, mapping = aes(x = pib_per_capita, y = esperanza_de_vida)) 
 ## ¿Qué geometría usarías para generar el siguiente gŕafico? 
 
 A- geom_col()
-*No conoce la diferencia entre col y bar*
-B- geom_bar()
-*Correcta*
+
+B- geom_bar() *Correcta*
+
 C- geom_histogram()
-*Confunde histograma para variable numérica con columnas para categóricas*
+
 
 ```{r}
 ggplot(data = diamantes, aes(x = corte)) +
   geom_bar()
 ```
+
+geom_col() grafica frecuencias y requiere información para el eje x y el eje y (que calculamos usando dplyr).
+
+```{r}
+diamantes %>% 
+  group_by(corte) %>% 
+  summarise(count = n()) %>% 
+  ggplot(aes(x = corte, y = count)) +
+  geom_col()
+```
+
 
 ## ¿Cuál es la característica estética que permite cambiar el color de las columnas?
 
@@ -114,7 +142,7 @@ B-
 ggplot(data = diamantes, aes(x = corte)) +
   geom_bar(alpha = "darkblue")
 
-C-
+C- *Correcta*
 ggplot(data = diamantes, aes(x = corte)) +
   geom_bar(fill = "darkblue")
 
