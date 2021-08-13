@@ -1,0 +1,129 @@
+---
+title: "Clase 3  - Otros elementos de gráficos"
+author: "Yanina"
+date: "18/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+pinguinos <- datos::pinguinos
+```
+
+## Títulos y ejes
+
+```{r grafico_barras_bar}
+
+ggplot(pinguinos, aes(sexo, fill = especie)) +
+  geom_bar()
+
+# Agregamos titulos
+
+ggplot(pinguinos, aes(sexo, fill = especie)) +
+  geom_bar() + 
+  labs(
+    x = "Sexo", 
+    y = "Cantidad", 
+    fill = "Especie",
+    title = "Cantidad de pingüinos por especie y sexo",
+    subtitle = "Fuente: paquete datos, dataset pingüinos",
+    caption = "Total de casos: 53.000"
+  )
+
+
+```
+
+```{r grafico_de_puntos}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie))
+
+#Agregamos títulos
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) + 
+  labs(
+    x = "Largo del pico (mm)", 
+    y = "Largo de la aleta (mm)", 
+    colour = "Especie",
+    title = "Relación entre el tamaño de pico y de la aleta de los pingüinos",
+    subtitle = "Fuente: paquete datos, dataset pingüinos"
+  )
+
+```
+
+
+```{r}
+#Agregamos títulos
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) + 
+  labs(
+    x = "Largo del pico (mm)", 
+    y = "Largo de la aleta (mm)", 
+    colour = "Especie",
+    title = "Relación entre el tamaño de pico y de la aleta de los pingüinos",
+    subtitle = "Fuente: paquete datos, dataset pingüinos"
+  )+
+  geom_text(aes(label = masa_corporal_g))
+
+#Agregamos el valor más alto
+mas_pesado <- pinguinos %>%
+  filter(masa_corporal_g == max(masa_corporal_g, na.rm = TRUE))
+
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) + 
+  labs(
+    x = "Largo del pico (mm)", 
+    y = "Largo de la aleta (mm)", 
+    colour = "Especie",
+    title = "Relación entre el tamaño de pico y de la aleta de los pingüinos",
+    subtitle = "Fuente: paquete datos, dataset pingüinos"
+  )+
+  geom_text(aes(label = masa_corporal_g),
+            data = mas_pesado,
+            size = 3)
+
+# Agregamos una anotación de texto
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) + 
+  labs(
+    x = "Largo del pico (mm)", 
+    y = "Largo de la aleta (mm)", 
+    colour = "Especie",
+    title = "Relación entre el tamaño de pico y de la aleta de los pingüinos",
+    subtitle = "Fuente: paquete datos, dataset pingüinos"
+  )+
+  geom_text(aes(label = masa_corporal_g),
+            data = mas_pesado,
+            size = 3) +
+  annotate('text', x = 55, y = 215, label = 'Máximo', color = 'blue', size=5, fontface = 'bold', angle = 25)
+
+#Agregamos una flecha
+
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) + 
+  labs(
+    x = "Largo del pico (mm)", 
+    y = "Largo de la aleta (mm)", 
+    colour = "Especie",
+    title = "Relación entre el tamaño de pico y de la aleta de los pingüinos",
+    subtitle = "Fuente: paquete datos, dataset pingüinos"
+  )+
+  geom_text(aes(label = masa_corporal_g),
+            data = mas_pesado,
+            size = 3) +
+  annotate('text', x = 55, y = 215, label = 'Máximo', color = 'blue', size=5, fontface = 'bold', angle = 25)+
+  geom_curve(aes(x = 55, y = 215, xend = 50, yend = 220),
+    arrow = arrow(length = unit(0.07, "inch")), size = 0.4,
+    color = "gray20", curvature = 0.3
+  )
+
+
+```
+
