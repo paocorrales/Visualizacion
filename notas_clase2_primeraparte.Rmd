@@ -89,6 +89,7 @@ ggplot(pinguinos, aes(sexo, fill = especie)) +
 
 
 ```
+
 ```{r histograma}
 
 ggplot(pinguinos, aes(masa_corporal_g)) +
@@ -96,12 +97,65 @@ ggplot(pinguinos, aes(masa_corporal_g)) +
 
 ```
 
+```{r}
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_histogram(binwidth = 50) +
+  
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_histogram(binwidth = 100) +
+  
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_histogram(binwidth = 500) +
+
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_histogram(binwidth = 1000) +
+  
+patchwork::plot_layout(ncol = 2)
+```
+
+
 ```{r histograma_intervalo}
 
 ggplot(pinguinos, aes(masa_corporal_g)) +
   geom_histogram(binwidth = 50)
 
 ```
+
+```{r densidad}
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_histogram() +
+  labs(title = "Histograma") +
+  
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_density() +
+  labs(title = "Densidad por nucleos") +
+  
+patchwork::plot_layout(ncol = 2)
+
+```
+
+```{r}
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_density() +
+  geom_rug(aes(y = -Inf), position = position_jitter(width = 10), sides = "b", alpha = 0.8)
+```
+
+```{r}
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_density() +
+  
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_density(bw = 50) +
+  
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_density(bw = 500) +
+  
+ggplot(pinguinos, aes(masa_corporal_g)) +
+  geom_density(kernel = "rectangular", bw = 100) +
+  
+patchwork::plot_layout(ncol = 2)
+```
+
 
 ```{r boxplot}
 ggplot(pinguinos, aes(masa_corporal_g)) +
@@ -115,9 +169,3 @@ ggplot(pinguinos, aes(x= especie, y= masa_corporal_g)) +
 ```
 
 
-```{r densidad}
-
-ggplot(pinguinos, aes(masa_corporal_g)) +
-  geom_density(fill = "skyblue")
-
-```

@@ -1,0 +1,47 @@
+---
+title: "Distribución"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(datos) #Da error? Probá correr en la consola remotes::install_github("cienciadedatos/datos")
+```
+
+
+Vamos a trabajar con la base de datos de pingüinos del paquete {datos}. La base de datos está en la versión de desarrollo por lo que hay que instalar el paquete con  `remotes::install_github("cienciadedatos/datos")`.
+
+Si quieren conocer más sobre estos datos pueden revisar la página (en inglés) https://allisonhorst.github.io/palmerpenguins/index.html
+
+Veamos que pinta tienenn los datos
+
+```{r}
+pinguinos
+```
+
+¿Cómo será la distribución del largo de la aleta?
+
+Completá el código para generar un histograma que responda la pregunta. Pista: la variable en el dataframe se llama `largo_aleta_mm`.
+
+```{r}
+ggplot(pinguinos, aes(_____________)) +
+  __________
+```
+
+¿Tiene sentido? Que pasaría si cambiamos el año de los intervalos? Pista: el argumento se llama `binwidth`.
+
+```{r}
+
+```
+
+Finalmente, ¿a qué podrán deberse esos 2 máximos? Pareciera que hay al menos dos grupos que comparten aletas parecidas. Completá el código cómo antes y además pinta de color las barras de acuerdo a la especie para develar el misterio. 
+
+¿Qué rol juegan `alpha = 0.5` y `position = "identity"`? Si queda tiempo, pueden cambiar estos valores para ver que sucede. Pista revisen la documentación de la geometría para ver que valores pueden tomar el alpha y position. 
+
+```{r}
+ggplot(pinguinos, aes(_________)) +
+  ____________(aes(__________ = ________), alpha = 0.5, position = "identity")
+```
+

@@ -1,0 +1,49 @@
+---
+title: "Relaciones"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(dplyr)
+library(datos)
+```
+
+Vamos a trabajar con la base de datos paises disponible en el paquete {datos}, la vieja y conocida gapminder.
+
+Completá el código para visualizar la relación entre el pib_per_capita y la esperanza de vida usando la geometría apropiada.
+
+```{r}
+ggplot(paises, aes(pib_per_capita, esperanza_de_vida)) +
+  geom_point()
+```
+
+Si usaron puntos, seguramente el gráfico tiene mucho overplotting (superposición de puntitos) y nos estamos perdiendo parte de la historia. 
+
+Usá los bloques de código que siguen a continuación para probar distintas estrategías que mitiguen el overploting. 
+
+```{r}
+# Alpha
+
+```
+
+```{r}
+# Shape
+
+```
+
+```{r}
+# jitter
+
+```
+
+¿Alguno funciona mejor? ¿Alguno no funciona para este caso particular? 
+
+Si queda tiempo pueden probar:
+
++ Mapear el color de los puntos a la variable continente
++ Mapear el tamaño de los puntos a la variable población
++ Agregar una capa con geom_smooth(), genera un buen ajuste?  
++ Los mismo pero por continente
