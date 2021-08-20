@@ -16,8 +16,13 @@ Vamos a trabajar con la base de datos paises disponible en el paquete {datos}, l
 Completá el código para visualizar la relación entre el pib_per_capita y la esperanza de vida usando la geometría apropiada.
 
 ```{r}
-ggplot(paises, aes(pib_per_capita, esperanza_de_vida)) +
-  geom_point()
+paises
+```
+
+
+```{r}
+ggplot(paises, aes(_________, _________)) +
+  _________()
 ```
 
 Si usaron puntos, seguramente el gráfico tiene mucho overplotting (superposición de puntitos) y nos estamos perdiendo parte de la historia. 

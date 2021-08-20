@@ -1,0 +1,97 @@
+---
+title: "Relaciones"
+author: "Pao Corrales"
+date: "8/13/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(datos)
+library(dplyr)
+```
+
+## Visualizar relaciones
+
+```{r}
+ggplot(pinguinos, aes(x = largo_pico_mm, y = largo_aleta_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+```{r}
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie)) +
+  geom_smooth(method = "lm", aes(color = especie))
+
+pinguinos %>% 
+  ggplot(aes(largo_pico_mm, largo_aleta_mm, color = especie)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+## Paneles
+
+```{r}
+ggplot(pinguinos, aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie, size = masa_corporal_g)) +
+  facet_wrap(~especie)
+```
+
+```{r}
+ggplot(pinguinos, aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie, size = masa_corporal_g)) +
+  facet_grid(sexo~especie)
+```
+
+
+```{r}
+ggplot(pinguinos, aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie, size = masa_corporal_g)) +
+  facet_grid(sexo~especie, scales = "free")
+```
+
+
+## geom_jitter
+
+```{r}
+ggplot(pinguinos, aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_point(aes(color = especie))
+
+ggplot(pinguinos, aes(largo_pico_mm, largo_aleta_mm)) +
+  geom_jitter(aes(color = especie))
+```
+
+## Series temporales
+
+```{r}
+emisiones <- readr::read_csv("datos/emisiones_gei.csv")
+
+ggplot(emisiones, aes(anio, emisiones)) +
+  geom_line(aes(color = sector)) +
+  geom_point(aes(color = sector, shape = sector))
+```
+
+```{r}
+ggplot(emisiones, aes(anio, emisiones)) +
+  geom_line(aes(color = sector, linetype = sector)) 
+ 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
