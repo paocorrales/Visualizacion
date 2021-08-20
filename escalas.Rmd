@@ -1,0 +1,123 @@
+---
+title: "Escalas"
+author: "Pao Corrales"
+date: "8/18/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(dplyr)
+library(datos)
+```
+
+## Escalas para los ejes
+
+```{r}
+ggplot(pinguinos, aes(especie)) +
+  geom_bar() +
+  scale_x_discrete() +
+  scale_y_continuous()
+```
+
+```{r}
+ggplot(pinguinos, aes(especie)) +
+  geom_bar() +
+  scale_x_discrete() +
+  scale_y_continuous(limits = c(0, 200),
+                     breaks = seq(0, 200, 25))
+```
+
+
+```{r}
+ggplot(pinguinos, aes(especie)) +
+  geom_bar() +
+  scale_x_discrete() +
+  scale_y_continuous(limits = c(0, 200),
+                     breaks = seq(0, 200, 25),
+                     expand = c(0, 1))
+```
+
+```{r}
+ggplot(pinguinos, aes(especie)) +
+  geom_bar() +
+  scale_x_discrete(labels = c("P1", "P2", "P3")) +
+  scale_y_continuous(limits = c(0, 200),
+                     breaks = seq(0, 200, 25),
+                     expand = c(0, 1))
+```
+
+
+```{r}
+ggplot(paises, aes(pib_per_capita, esperanza_de_vida)) +
+  geom_point() +
+  scale_x_log10()
+```
+
+```{r}
+clima %>% 
+  mutate(fecha = lubridate::make_datetime(anio, mes, dia, hora)) %>% 
+  filter(origen == "LGA" ) %>% 
+  ggplot(aes(fecha, temperatura)) +
+  geom_line()
+```
+
+```{r}
+clima %>% 
+  mutate(fecha = lubridate::make_datetime(anio, mes, dia, hora)) %>% 
+  filter(origen == "LGA" ) %>% 
+  ggplot(aes(fecha, temperatura)) +
+  geom_line() +
+  scale_x_datetime(date_breaks = "3 months")
+  
+```
+
+```{r}
+clima %>% 
+  mutate(fecha = lubridate::make_datetime(anio, mes, dia, hora)) %>% 
+  filter(origen == "LGA" ) %>% 
+  ggplot(aes(fecha, temperatura)) +
+  geom_line() +
+  scale_x_datetime(date_breaks = "3 months",
+                   date_labels = "%b-%Y")
+```
+
+```{r}
+ggplot(paises, aes(pib_per_capita, esperanza_de_vida)) +
+  geom_point(aes(color = continente, shape = continente)) +
+  scale_x_log10()
+```
+
+
+```{r}
+ ggplot(paises, aes(pib_per_capita, esperanza_de_vida)) +
+  geom_point(aes(color = continente, shape = continente)) +
+  scale_x_log10() +
+  scale_shape_manual(values = c(1, 2, 3, 4, 5))
+```
+
+```{r}
+colorblindr::cvd_grid(
+
+ ggplot(paises, aes(pib_per_capita, esperanza_de_vida)) +
+  geom_point(aes(color = continente)) +
+  scale_x_log10() 
+
+)
+```
+
+```{r}
+ ggplot(paises, aes(pib_per_capita, esperanza_de_vida)) +
+  geom_point(aes(color = continente)) +
+  scale_x_log10() +
+  scale_color_brewer(palette = "Dark2")
+```
+
+```{r}
+ ggplot(paises, aes(pib_per_capita, esperanza_de_vida)) +
+  geom_point(aes(color = continente)) +
+  scale_x_log10() +
+  scale_color_viridis_d(option = "A")
+```
