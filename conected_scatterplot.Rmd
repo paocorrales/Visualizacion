@@ -1,0 +1,50 @@
+---
+title: "Untitled"
+author: "Pao Corrales"
+date: "8/20/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(dplyr)
+library(datos)
+```
+
+```{r}
+ultimo <- paises %>% 
+  group_by(pais) %>% 
+  filter(pais %in% c("Argentina", "Nigeria", "China", "Canadá") & anio == max(anio))
+
+paises %>% 
+  filter(pais %in% c("Argentina", "Nigeria", "China", "Canadá")) %>% 
+  arrange(pais, anio) %>% 
+  ggplot(aes(pib_per_capita, esperanza_de_vida)) +
+  geom_path(aes(color = pais)) +
+  geom_text(data = ~.x %>% filter(pais == "Argentina"), aes(label = anio), nudge_y = 2,
+            size = 3) +
+  geom_point(data = ultimo, aes(color = pais, size = poblacion)) +
+  scale_color_brewer(palette = "Dark2") +
+  scale_x_log10() +
+  labs(title = "Scatterplot conectado?",
+       x = "PIB per capita",
+       y = "Esperanza de vida",
+       color = NULL,
+       size = "Población") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(diamantes) +
+  geom_bar(aes(x=corte, fill = claridad)) +
+  scale_fill_manual(values = c("red", "blue", "white", "black", "yellow", "green", "orange", "pink" )) +
+  labs(title = "Cantidad de diamantes por tipo y claridad",
+       caption ="Fuente: Conjunto de datos diamantes del paquete datos",
+       x="Corte del diamante",
+       y= "Cantidad",
+       color = "Claridad")
+
+```
+
